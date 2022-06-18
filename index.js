@@ -20,12 +20,14 @@ let ballXDirection = 0;
 let ballYDirection = 0;
 let player1Score = 0;
 let player2Score = 0;
+
 let paddle1 = {
 	width: 25,
 	height: 100,
 	x: 0,
 	y: 0,
 };
+
 let paddle2 = {
 	width: 25,
 	height: 100,
@@ -42,6 +44,7 @@ function gameStart() {
 	createBall();
 	nextTick();
 }
+
 function nextTick() {
 	intervalID = setTimeout(() => {
 		clearBoard();
@@ -52,10 +55,12 @@ function nextTick() {
 		nextTick();
 	}, 10);
 }
+
 function clearBoard() {
 	ctx.fillStyle = boardBackground;
 	ctx.fillRect(0, 0, gameWidth, gameHeight);
 }
+
 function drawPaddles() {
 	ctx.strokeStyle = paddleBorder;
 
@@ -67,6 +72,7 @@ function drawPaddles() {
 	ctx.fillRect(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
 	ctx.strokeRect(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
 }
+
 function createBall() {
 	ballSpeed = 1;
 	if (Math.round(Math.random()) == 1) {
@@ -83,10 +89,12 @@ function createBall() {
 	ballY = gameHeight / 2;
 	drawBall(ballX, ballY);
 }
+
 function moveBall() {
 	ballX += ballSpeed * ballXDirection;
 	ballY += ballSpeed * ballYDirection;
 }
+
 function drawBall(ballX, ballY) {
 	ctx.fillStyle = ballColor;
 	ctx.strokeStyle = ballBorderColor;
@@ -96,6 +104,7 @@ function drawBall(ballX, ballY) {
 	ctx.stroke();
 	ctx.fill();
 }
+
 function checkCollision() {
 	if (ballY <= 0 + ballRadius) {
 		ballYDirection *= -1;
@@ -130,6 +139,7 @@ function checkCollision() {
 		}
 	}
 }
+
 function changeDirection(event) {
 	const keyPressed = event.keyCode;
 	const paddle1Up = 87;
@@ -160,9 +170,11 @@ function changeDirection(event) {
 			break;
 	}
 }
+
 function updateScore() {
 	scoreText.textContent = `${player1Score} : ${player2Score}`;
 }
+
 function resetGame() {
 	player1Score = 0;
 	player2Score = 0;
